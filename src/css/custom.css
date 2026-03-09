@@ -1,0 +1,42 @@
+/* avian automata brand colors — electric blue primary, deep navy background */
+
+:root {
+  --ifm-color-primary: #1565c0;
+  --ifm-color-primary-dark: #1259ac;
+  --ifm-color-primary-darker: #1154a3;
+  --ifm-color-primary-darkest: #0d4587;
+  --ifm-color-primary-light: #1871d4;
+  --ifm-color-primary-lighter: #1976dd;
+  --ifm-color-primary-lightest: #2585e8;
+  --ifm-code-font-size: 92%;
+  --docusaurus-highlighted-code-line-bg: rgba(21, 101, 192, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4da6ff;
+  --ifm-color-primary-dark: #2e97ff;
+  --ifm-color-primary-darker: #1f90ff;
+  --ifm-color-primary-darkest: #0076f0;
+  --ifm-color-primary-light: #6cb5ff;
+  --ifm-color-primary-lighter: #7bbcff;
+  --ifm-color-primary-lightest: #a8d4ff;
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #161b22;
+  --docusaurus-highlighted-code-line-bg: rgba(77, 166, 255, 0.15);
+}
+
+/* Tighten up table styling for dense hardware reference tables */
+table {
+  display: table;
+  width: 100%;
+}
+
+table th,
+table td {
+  font-size: 0.875rem;
+}
+
+/* Monospace for pin names and addresses */
+code {
+  font-size: 90%;
+}
