@@ -6,11 +6,11 @@ sidebar_label: RC Setup
 
 # RC Setup
 
-The 305AP supports several RC protocols. Which port and protocol you use depends on your receiver type.
+The 305ap supports several RC protocols. Which port and protocol you use depends on your receiver type.
 
 ## Option A — SBUS / Single-Wire Protocols (RC IN port)
 
-**Port:** UART5 (ttyS4) — labeled **RC IN**
+**Port:** UART5 (ttyS4), labeled **RC IN**
 
 UART5 is configured as a single-wire half-duplex port. The signal line is PB13. Connect your receiver's SBUS output directly to this pin.
 
@@ -19,11 +19,11 @@ This port works with:
 - DSM/DSMX (via spektrum satellite adapter)
 - Single-wire PPM
 
-No QGC configuration is needed — the RC driver activates on this port automatically.
+No QGC configuration is needed. The RC driver activates on this port automatically.
 
 ## Option B — CRSF / ELRS (Telem 1 port)
 
-**Port:** UART4 (ttyS3) — labeled **Telem 1**
+**Port:** UART4 (ttyS3), labeled **Telem 1**
 
 CRSF and ELRS require a full-duplex UART. Connect your receiver's TX to the FC's RX (PA1) and the receiver's RX to the FC's TX (PA0).
 
@@ -43,7 +43,7 @@ ExpressLRS receivers use CRSF protocol. The setup is identical to CRSF above.
 
 ## Option C — CRSF / ELRS (Telem 2 port)
 
-**Port:** UART7 (ttyS6) — labeled **Telem 2**
+**Port:** UART7 (ttyS6), labeled **Telem 2**
 
 Same procedure as Option B but set `SER_UART7_FUNC` = **RC Input (13)** instead.
 

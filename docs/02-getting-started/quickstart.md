@@ -10,7 +10,7 @@ This page gets you from unboxed board to a flying vehicle as quickly as possible
 
 ## What You Need
 
-- 305AP flight controller
+- 305ap flight controller
 - MicroSD card (Class 10 or faster, 32 GB or smaller recommended)
 - USB-C cable
 - [QGroundControl](https://qgroundcontrol.com) installed on your PC
@@ -20,7 +20,7 @@ This page gets you from unboxed board to a flying vehicle as quickly as possible
 
 ## Step 1 — Insert SD Card
 
-The 305AP stores parameters, logs, and mission data on the SD card. Insert the card before powering up for the first time. Parameters **will not persist** across reboots without a card.
+The 305ap stores parameters, logs, and mission data on the SD card. Insert the card before powering up for the first time. Parameters **will not persist** across reboots without a card.
 
 ## Step 2 — Flash Firmware
 
@@ -44,14 +44,14 @@ See [RC Setup](../configuration/rc-setup) for receiver wiring options. SBUS and 
 
 Follow the QGC vehicle setup wizard:
 
-1. **Airframe** — select your vehicle type and frame
-2. **Sensors** — calibrate accelerometer, gyro, compass, and level
-3. **Radio** — calibrate RC channels
-4. **Flight Modes** — assign switches
-5. **Power** — configure battery cell count and voltage divider
+1. **Airframe:** select your vehicle type and frame
+2. **Sensors:** calibrate accelerometer, gyro, compass, and level
+3. **Radio:** calibrate RC channels
+4. **Flight Modes:** assign switches
+5. **Power:** configure battery cell count and voltage divider
 
 :::warning No safety switch
-The 305AP has no hardware safety switch. PX4 will arm via the RC stick command or GCS arm button only. Ensure props are clear before arming.
+The 305ap has no hardware safety switch. PX4 will arm via the RC stick command or GCS arm button only. Ensure props are clear before arming.
 :::
 
 ## Step 6 — Pre-Flight Check

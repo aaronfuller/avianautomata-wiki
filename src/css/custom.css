@@ -1,28 +1,62 @@
-/* avian automata brand colors — electric blue primary, deep navy background */
+/* avian automata — Inter for brand/headings, system stack for body */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --ifm-color-primary: #1565c0;
-  --ifm-color-primary-dark: #1259ac;
-  --ifm-color-primary-darker: #1154a3;
-  --ifm-color-primary-darkest: #0d4587;
-  --ifm-color-primary-light: #1871d4;
-  --ifm-color-primary-lighter: #1976dd;
-  --ifm-color-primary-lightest: #2585e8;
+  /* Desert sand primary — darkened for contrast on white */
+  --ifm-color-primary: #8a6c3e;
+  --ifm-color-primary-dark: #7c6138;
+  --ifm-color-primary-darker: #755b35;
+  --ifm-color-primary-darkest: #604b2b;
+  --ifm-color-primary-light: #987749;
+  --ifm-color-primary-lighter: #9f7d4f;
+  --ifm-color-primary-lightest: #b29063;
   --ifm-code-font-size: 92%;
-  --docusaurus-highlighted-code-line-bg: rgba(21, 101, 192, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(138, 108, 62, 0.1);
+
+  /* Body copy: system font stack (SF Pro on Mac, Segoe UI on Windows, Roboto on Android) */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, sans-serif;
+
+  /* Headings: Inter */
+  --ifm-heading-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-heading-font-weight: 600;
 }
 
-[data-theme='dark'] {
-  --ifm-color-primary: #4da6ff;
-  --ifm-color-primary-dark: #2e97ff;
-  --ifm-color-primary-darker: #1f90ff;
-  --ifm-color-primary-darkest: #0076f0;
-  --ifm-color-primary-light: #6cb5ff;
-  --ifm-color-primary-lighter: #7bbcff;
-  --ifm-color-primary-lightest: #a8d4ff;
-  --ifm-background-color: #0d1117;
-  --ifm-background-surface-color: #161b22;
-  --docusaurus-highlighted-code-line-bg: rgba(77, 166, 255, 0.15);
+/* Inter for navbar brand and all headings */
+.navbar__brand .navbar__title,
+.navbar__title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+}
+
+/* Navbar height and logo */
+.navbar {
+  height: 64px;
+  align-items: center;
+}
+
+.navbar__inner {
+  align-items: center;
+}
+
+.navbar__brand {
+  align-items: center;
+}
+
+/* Navbar logo size and color */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  height: 56px;
+  max-height: 56px;
+  width: auto;
+  display: block;
+  filter: brightness(0);
 }
 
 /* Tighten up table styling for dense hardware reference tables */
@@ -36,7 +70,6 @@ table td {
   font-size: 0.875rem;
 }
 
-/* Monospace for pin names and addresses */
 code {
   font-size: 90%;
 }

@@ -1,9 +1,9 @@
 ---
 id: dronecan
-title: Dronecan
-sidebar_label: Dronecan
+title: DroneCAN
+sidebar_label: DroneCAN
 ---
 
-# Dronecan
+# DroneCAN
 
 Content coming soon.

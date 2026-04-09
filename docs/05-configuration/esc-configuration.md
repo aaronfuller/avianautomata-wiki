@@ -1,9 +1,9 @@
 ---
 id: esc-configuration
-title: Esc Configuration
-sidebar_label: Esc Configuration
+title: ESC Configuration
+sidebar_label: ESC Configuration
 ---
 
-# Esc Configuration
+# ESC Configuration
 
 Content coming soon.

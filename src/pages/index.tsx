@@ -1,61 +1,83 @@
 import type { ReactNode } from 'react';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
-interface ProductCardProps {
-  name: string;
+interface SectionCardProps {
+  title: string;
   description: string;
   to: string;
-  tags: string[];
 }
 
-function ProductCard({ name, description, to, tags }: ProductCardProps) {
+function SectionCard({ title, description, to }: SectionCardProps) {
   return (
-    <div className={styles.productCard}>
-      <div className={styles.productCardContent}>
-        <Heading as="h3">{name}</Heading>
-        <p>{description}</p>
-        <div className={styles.tags}>
-          {tags.map((tag) => (
-            <span key={tag} className={styles.tag}>{tag}</span>
-          ))}
-        </div>
+    <Link to={to} className={styles.card}>
+      <div className={styles.cardBody}>
+        <div className={styles.cardTitle}>{title}</div>
+        <div className={styles.cardDescription}>{description}</div>
       </div>
-      <div className={styles.productCardFooter}>
-        <Link className="button button--primary button--md" to={to}>
-          View Docs
-        </Link>
-      </div>
-    </div>
+      <div className={styles.cardArrow}>→</div>
+    </Link>
   );
 }
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={siteConfig.title} description="avian automata product documentation">
-      <header className={styles.hero}>
+    <Layout title="Documentation" description="avian automata product documentation">
+      <div className={styles.hero}>
         <div className="container">
-          <Heading as="h1">avian automata Wiki</Heading>
+          <div className={styles.heroLabel}>305ap Flight Controller</div>
+          <h1 className={styles.heroTitle}>avian automata docs</h1>
           <p className={styles.heroSubtitle}>
-            Technical documentation for avian automata hardware and firmware.
+            Everything you need to set up, configure, and fly the 305ap.
           </p>
         </div>
-      </header>
-      <main className="container margin-vert--xl">
-        <Heading as="h2">Products</Heading>
-        <div className={styles.productGrid}>
-          <ProductCard
-            name="305AP Flight Controller"
-            description="High-performance PX4 flight controller based on the STM32H743VIH6. Dual ICM-45686 IMUs, BMP581 baro, MMC5983MA mag, dual CAN, 8 PWM outputs."
-            to="/305ap/intro"
-            tags={['PX4', 'STM32H7', 'FDCAN', 'DSHOT']}
+      </div>
+
+      <div className="container">
+        <div className={styles.grid}>
+          <SectionCard
+            title="Getting Started"
+            description="Quickstart guide, firmware install, and first flight checklist."
+            to="/305ap/getting-started/quickstart"
+          />
+          <SectionCard
+            title="Connectors & Pinout"
+            description="Full pinout tables for every port — UARTs, SPI, I2C, CAN, PWM, and power."
+            to="/305ap/hardware/connectors-pinout"
+          />
+          <SectionCard
+            title="Flashing Firmware"
+            description="Flash PX4 via QGroundControl, DFU, or the PX4 bootloader."
+            to="/305ap/firmware/flashing"
+          />
+          <SectionCard
+            title="RC Setup"
+            description="Configure SBUS, CRSF, and ELRS receivers on the 305ap."
+            to="/305ap/configuration/rc-setup"
+          />
+          <SectionCard
+            title="Hardware Reference"
+            description="IMUs, barometer, magnetometer, CANBUS, PWM outputs, and more."
+            to="/305ap/hardware/board-layout"
+          />
+          <SectionCard
+            title="Configuration"
+            description="QGroundControl setup, sensor calibration, ESC config, and telemetry."
+            to="/305ap/configuration/qgc-setup"
+          />
+          <SectionCard
+            title="Building from Source"
+            description="Clone PX4, build the avianautomata_305ap target, and upload."
+            to="/305ap/firmware/building-from-source"
+          />
+          <SectionCard
+            title="Troubleshooting"
+            description="LED status codes, common issues, and log analysis."
+            to="/305ap/troubleshooting/common-issues"
           />
         </div>
-      </main>
+      </div>
     </Layout>
   );
 }

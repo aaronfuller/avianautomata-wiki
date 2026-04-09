@@ -1,21 +1,34 @@
 ---
 id: can-bus
-title: CAN Bus
-sidebar_label: CAN Bus
+title: CANBUS
+sidebar_label: CANBUS
 ---
 
-# CAN Bus
+# CANBUS
 
-The 305AP has two independent FDCAN ports supporting DroneCAN (formerly UAVCAN v1/v0) peripherals.
+The 305ap has two independent FDCAN ports supporting DroneCAN (formerly UAVCAN v1/v0) peripherals.
 
 ## Hardware
 
-| Port | TX | RX | Enable (STB) | Notes |
+| Port | TX | RX | Enable (STB) | Transceiver |
 |---|---|---|---|---|
-| FDCAN1 | PD1 | PD0 | PA10 (active-high) | PA10 was repurposed from USART1 — no conflict |
-| FDCAN2 | PB6 | PB5 | PE1 (active-high) | |
+| FDCAN1 | PD1 | PD0 | PA10 (active-high) | SIT1044T/K/3 |
+| FDCAN2 | PB6 | PB5 | PE1 (active-high) | SIT1044T/K/3 |
 
 The STB (standby) pin controls the CAN transceiver. PX4 asserts it high to enable the transceiver.
+
+**PA10 note:** PA10 was repurposed from USART1 as the FDCAN1 STB line. It is not available as a UART pin.
+
+### CAN Transceivers
+
+Both CAN ports use **SIT1044T/K/3** transceivers, which are ISO 11898-2:2016 compliant CAN FD transceivers rated to 5 Mbps. Key features:
+
+- 3.3 V / 5 V MCU I/O compatible
+- Standby mode (controlled by STB pin)
+- Undervoltage protection
+- TX dominant timeout
+- Thermal shutdown
+- Unpowered-node bus disengagement (does not corrupt the bus when unpowered)
 
 ## Wiring
 
@@ -25,10 +38,10 @@ CAN uses a differential pair. Connect:
 - CAN L to CAN L
 - GND to GND
 
-Use a 120 Ω termination resistor at each **end** of the CAN bus. Most commercial CAN peripherals have a built-in termination resistor that can be enabled via a solder jumper or DIP switch.
+The 305ap includes **two 120 Ω termination resistors onboard** for each CAN port. The bus is fully terminated at the FC. **Do not add any external termination resistors** on the cable run or at peripheral devices — extra resistors will lower the bus impedance below the ISO 11898-2 spec and degrade signal integrity.
 
 :::warning
-Do not daisy-chain CAN in a star topology. Run a single bus from the FC to each device in a line, with terminators at the two physical ends only.
+Do not daisy-chain CAN in a star topology. Run a single bus from the FC to each device in a line.
 :::
 
 ## Enabling DroneCAN in PX4

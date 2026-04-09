@@ -6,7 +6,7 @@ sidebar_label: IMU Sensors
 
 # IMU Sensors
 
-The 305AP has two ICM-45686 6-axis IMUs (accelerometer + gyroscope), both mounted on the top of the board.
+The 305ap has two ICM-45686 6-axis IMUs (accelerometer + gyroscope), both mounted on the top of the board.
 
 ## Hardware
 
@@ -27,8 +27,8 @@ Both IMUs are mounted flat on the top of the board, adjacent to each other, with
 
 If the board is mounted at a different angle or orientation, set the rotation in PX4:
 
-- **`IMU_1_ROT`** — rotation for IMU 1
-- **`IMU_2_ROT`** — rotation for IMU 2
+- **`IMU_1_ROT`**: rotation for IMU 1
+- **`IMU_2_ROT`**: rotation for IMU 2
 
 ## Redundancy
 
@@ -50,6 +50,22 @@ listener sensor_gyro
 ```
 
 Multiple instances (`instance 0` and `instance 1`) confirm both IMUs are active.
+
+## Sensor Specifications
+
+The ICM-45686 is a high-performance 6-axis IMU from TDK InvenSense using their **BalancedGyro** technology.
+
+| Specification | Value |
+|---|---|
+| Axes | 3-axis accelerometer + 3-axis gyroscope |
+| Host interface | SPI (primary), I2C, I3C |
+| Auxiliary interface | Yes |
+| FIFO | Up to 8 KB |
+| Interrupts | 2 programmable interrupt pins (INT1 / INT2) |
+| Accelerometer range | Configurable |
+| Gyroscope range | Configurable |
+
+Both IMUs are powered from the quiet 3.3 V LDO rail (RT9193), which is isolated from the main digital 3.3 V switcher via a ferrite bead, reducing power supply noise on the sensor analog inputs.
 
 ## Vibration
 

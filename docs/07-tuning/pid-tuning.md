@@ -1,9 +1,9 @@
 ---
 id: pid-tuning
-title: Pid Tuning
-sidebar_label: Pid Tuning
+title: PID Tuning
+sidebar_label: PID Tuning
 ---
 
-# Pid Tuning
+# PID Tuning
 
 Content coming soon.

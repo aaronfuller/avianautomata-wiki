@@ -1,9 +1,9 @@
 ---
 id: px4-overview
-title: Px4 Overview
-sidebar_label: Px4 Overview
+title: PX4 Overview
+sidebar_label: PX4 Overview
 ---
 
-# Px4 Overview
+# PX4 Overview
 
 Content coming soon.

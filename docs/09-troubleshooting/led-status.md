@@ -6,7 +6,7 @@ sidebar_label: LED Status
 
 # LED Status
 
-The 305AP has three LEDs — red, green, and blue — all active-low (GPIO LOW = on).
+The 305ap has three LEDs (red, green, and blue), all active-low (GPIO LOW = on).
 
 | Color | GPIO | Pin |
 |---|---|---|
@@ -49,9 +49,9 @@ PX4 controls these LEDs to communicate system state. The patterns below reflect 
 
 If the red LED is blinking, connect to QGroundControl and check:
 
-1. **Status bar** — error flags appear at the top
-2. **MAVLink Console → `commander status`** — shows what is blocking arming
-3. **MAVLink Console → `listener vehicle_status`** — detailed system state
+1. **Status bar:** error flags appear at the top
+2. **MAVLink Console → `commander status`:** shows what is blocking arming
+3. **MAVLink Console → `listener vehicle_status`:** detailed system state
 
 ## No LEDs at All
 

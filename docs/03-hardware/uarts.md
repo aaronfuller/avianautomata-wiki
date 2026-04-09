@@ -6,7 +6,7 @@ sidebar_label: UARTs
 
 # UARTs
 
-The 305AP exposes 7 hardware UARTs. Each maps to a NuttX `ttyS` device and a PX4 serial port name.
+The 305ap exposes 7 hardware UARTs. Each maps to a NuttX `ttyS` device and a PX4 serial port name.
 
 ## Port Map
 
@@ -29,7 +29,7 @@ The 305AP exposes 7 hardware UARTs. Each maps to a NuttX `ttyS` device and a PX4
 The physical TX pin (PA9) is reconfigured as the RX line. This is a receive-only port used to collect ESC telemetry (e.g. BLHeli32/AM32 serial telemetry).
 
 - RX pin: PA9
-- PA10 is repurposed as the FDCAN1 standby (STB) enable — it is **not** available as USART1 RX/TX
+- PA10 is repurposed as the FDCAN1 standby (STB) enable and is **not** available as USART1 RX/TX
 
 ### USART2 — VTX / TEL3 (ttyS1)
 
@@ -87,4 +87,4 @@ Port functions are configurable from QGroundControl without a firmware rebuild:
 1. Go to **Vehicle Setup → Parameters**
 2. Search for `SER_` to find serial port assignments
 3. Change the function (e.g. set `SER_UART4_FUNC` to `RC Input` for CRSF on Telem 1)
-4. Reboot — additional parameters for that function will appear
+4. Reboot. Additional parameters for that function will appear.

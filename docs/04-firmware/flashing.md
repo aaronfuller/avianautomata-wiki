@@ -8,7 +8,7 @@ sidebar_label: Flashing
 
 ## Via QGroundControl (Recommended)
 
-1. Connect the 305AP to your PC via USB.
+1. Connect the 305ap to your PC via USB.
 2. Open QGroundControl.
 3. Go to **Vehicle Setup → Firmware**.
 4. Select **PX4 Flight Stack** and choose the stable release.
@@ -22,7 +22,7 @@ If QGroundControl does not detect the board, try entering DFU mode manually (see
 
 ### Enter DFU Mode
 
-The 305AP has no dedicated DFU button. To enter DFU mode:
+The 305ap has no dedicated DFU button. To enter DFU mode:
 
 1. Locate the **BOOT0** pin/pad on the board.
 2. Hold BOOT0 high (connect to 3.3V) while applying power or pressing NRST.
@@ -40,7 +40,7 @@ dfu-util -a 0 -s 0x08020000:leave -D avianautomata_305ap_default.bin
 ```
 
 :::note Flash address
-`0x08020000` is the PX4 application start address — sector 1, immediately after the 128 KB bootloader reservation.
+`0x08020000` is the PX4 application start address, located in sector 1 immediately after the 128 KB bootloader reservation.
 :::
 
 ### Flash via STM32CubeProgrammer
@@ -55,7 +55,7 @@ dfu-util -a 0 -s 0x08020000:leave -D avianautomata_305ap_default.bin
 
 If the PX4 bootloader is already installed:
 
-1. Power cycle the board — the bootloader waits 5 seconds for an upload request.
+1. Power cycle the board. The bootloader waits 5 seconds for an upload request.
 2. Use QGroundControl or `px_uploader.py` to upload within that window.
 
 ```bash

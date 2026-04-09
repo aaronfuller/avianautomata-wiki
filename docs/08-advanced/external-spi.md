@@ -1,9 +1,9 @@
 ---
 id: external-spi
-title: External Spi
-sidebar_label: External Spi
+title: External SPI
+sidebar_label: External SPI
 ---
 
-# External Spi
+# External SPI
 
 Content coming soon.

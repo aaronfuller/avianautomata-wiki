@@ -3,9 +3,13 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   title: 'avian automata Wiki',
   tagline: 'Documentation for avian automata products',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   url: 'https://wiki.avianautomata.com',
   baseUrl: '/',
@@ -79,16 +83,16 @@ const config: Config = {
 
   themeConfig: {
     colorMode: {
-      defaultMode: 'dark',
-      respectPrefersColorScheme: true,
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
 
     navbar: {
       title: 'avian automata',
       logo: {
         alt: 'avian automata Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo-dark.svg',
+        src: 'img/logo.png',
       },
       hideOnScroll: false,
       items: [
@@ -97,18 +101,8 @@ const config: Config = {
           label: 'Products',
           position: 'left',
           items: [
-            { label: '305AP Flight Controller', to: '/305ap/intro' },
+            { label: '305ap Flight Controller', to: '/305ap/intro' },
           ],
-        },
-        {
-          to: '/305ap/hardware/connectors-pinout',
-          label: 'Pinouts',
-          position: 'left',
-        },
-        {
-          to: '/305ap/firmware/flashing',
-          label: 'Flashing',
-          position: 'left',
         },
         {
           href: 'https://github.com/avianautomata',
@@ -126,12 +120,12 @@ const config: Config = {
     },
 
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Products',
           items: [
-            { label: '305AP Flight Controller', to: '/305ap/intro' },
+            { label: '305ap Flight Controller', to: '/305ap/intro' },
           ],
         },
         {

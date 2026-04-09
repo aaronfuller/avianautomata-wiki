@@ -6,7 +6,7 @@ sidebar_label: QGroundControl Setup
 
 # QGroundControl Setup
 
-[QGroundControl](https://qgroundcontrol.com) (QGC) is the recommended ground station application for configuring and operating the 305AP.
+[QGroundControl](https://qgroundcontrol.com) (QGC) is the recommended ground station application for configuring and operating the 305ap.
 
 ## Connecting
 
@@ -24,7 +24,7 @@ After connecting for the first time, complete the setup wizard in order:
 
 Select your vehicle type and the closest matching airframe. For a custom build, choose the generic frame for your vehicle type (e.g. **Generic Quadcopter X** for a quad).
 
-Reboot after changing airframe — this resets PID gains and mixer to defaults for that frame.
+Reboot after changing airframe. This resets PID gains and mixer to defaults for that frame.
 
 ### 2. Sensors
 
@@ -60,7 +60,7 @@ Assign your transmitter switches to flight modes. At minimum configure:
 
 Configure battery monitoring:
 
-| Parameter | Value for 305AP |
+| Parameter | Value for 305ap |
 |---|---|
 | Number of cells | Match your battery |
 | Full voltage (per cell) | 4.20 V (LiPo) |
@@ -69,7 +69,7 @@ Configure battery monitoring:
 | Amps per volt | Set per your external current sensor datasheet |
 
 :::note No onboard current shunt
-The 305AP requires an external current sensor. If no sensor is connected, current and consumed mAh will not be reported.
+The 305ap requires an external current sensor. If no sensor is connected, current and consumed mAh will not be reported.
 :::
 
 ## Key Parameters

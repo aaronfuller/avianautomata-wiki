@@ -2,110 +2,232 @@
 id: connectors-pinout
 title: Connectors & Pinout
 sidebar_label: Connectors & Pinout
-description: Full pinout reference for the avian automata 305AP flight controller.
+description: Physical connector pinouts for the avian automata 305ap flight controller.
 ---
 
 # Connectors & Pinout
 
-## UARTs
+All board-to-wire connectors use **JST-GH** style. Pin 1 is marked on the connector housing.
 
-| UART | `ttyS` | Function | TX Pin | RX Pin | RTS | CTS | Notes |
-|---|---|---|---|---|---|---|---|
-| USART1 | ttyS0 | Motor Telemetry RX | — | PA9 | — | — | SINGLEWIRE + SWAP: physical TX pin (PA9) used as RX. PA10 is CAN1 STB. |
-| USART2 | ttyS1 | VTX / TEL3 | PD5 | PD6 | — | — | |
-| USART3 | ttyS2 | VTX SBUS / Debug Console | PD8 | — | — | — | TX only. PD9 is RED LED. |
-| UART4 | ttyS3 | Telem 1 | PA0 | PA1 | PB14 | PB0 | HW flow control supported (`MAV_0_FLOW_CTRL`). |
-| UART5 | ttyS4 | RC Input | PB13 | — | — | — | SINGLEWIRE + SWAP. PB12 is GREEN LED — cannot be used as UART5 RTS. |
-| USART6 | ttyS5 | GPS | PC6 | PC7 | — | — | |
-| UART7 | ttyS6 | Telem 2 | PE8 | PE7 | PE9 | PE10 | HW flow control enabled by default. |
+## Connector Overview
 
-:::note SINGLEWIRE ports
-USART1 and UART5 use single-wire half-duplex mode. The physical TX pin is reconfigured as the RX line via the SWAP setting. Do not wire a normal RX signal to these ports.
+| Connector | Ref | Pins | Function |
+|---|---|---|---|
+| Power | CN1 | 6 | Main battery input |
+| TELEM 1 | CN2 | 6 | Telemetry / MAVLink with flow control |
+| TELEM 2 | CN3 | 6 | Telemetry / companion computer with flow control |
+| Basic GPS | CN4 | 6 | GPS UART + I2C compass |
+| CAN 1 | U18 | 4 | FDCAN1 bus |
+| CAN 2 | U19 | 4 | FDCAN2 bus |
+| External I2C | U20 | 4 | I2C expansion |
+| External SPI | CN7 | 7 | SPI expansion |
+| Motors | U21 | 12 | 8× motor outputs + ESC telemetry + current sense |
+| VTX | CN6 | 6 | Video transmitter power and control |
+| RC IN | U22 | 3 | RC receiver input |
+| USB-C | USBC1 | — | USB 2.0 FS device / power |
+
+---
+
+## Power — CN1
+
+**6-pin JST-GH.** Main battery input.
+
+| Pin | Signal |
+|---|---|
+| 1 | VBAT\_IN |
+| 2 | VBAT\_IN |
+| 3 | VBAT\_IN |
+| 4 | GND |
+| 5 | GND |
+| 6 | GND |
+
+Pins 1–3 are paralleled for current capacity and lower contact resistance. Pins 4–6 are paralleled ground. This connector feeds the board's protected VBAT input (fuse → TVS → ideal-diode front end).
+
+**Input voltage:** 2S–6S LiPo / Li-ion (approximately 7–25.2 V).
+
+---
+
+## TELEM 1 — CN2
+
+**6-pin JST-GH.** Primary telemetry port with hardware flow control.
+
+| Pin | Signal | MCU |
+|---|---|---|
+| 1 | +5V | — |
+| 2 | TM1\_UART\_TX | UART4 TX (PA0) |
+| 3 | TM1\_UART\_RX | UART4 RX (PA1) |
+| 4 | TM1\_UART\_CTS | UART4 CTS (PB0) |
+| 5 | TM1\_UART\_RTS | UART4 RTS (PB14) |
+| 6 | GND | — |
+
+Default function: MAVLink (TEL1). Hardware flow control is supported. Enable via `MAV_0_FLOW_CTRL` in QGroundControl without a firmware rebuild.
+
+---
+
+## TELEM 2 — CN3
+
+**6-pin JST-GH.** Secondary telemetry port with hardware flow control.
+
+| Pin | Signal | MCU |
+|---|---|---|
+| 1 | +5V | — |
+| 2 | TM2\_UART\_TX | UART7 TX (PE8) |
+| 3 | TM2\_UART\_RX | UART7 RX (PE7) |
+| 4 | TM2\_UART\_CTS | UART7 CTS (PE10) |
+| 5 | TM2\_UART\_RTS | UART7 RTS (PE9) |
+| 6 | GND | — |
+
+Default function: TEL2. Commonly used for companion computers. Hardware flow control enabled by default.
+
+---
+
+## Basic GPS — CN4
+
+**6-pin JST-GH.** UART GPS with I2C compass support.
+
+| Pin | Signal | MCU |
+|---|---|---|
+| 1 | +5V | — |
+| 2 | GPS\_UART\_TX | USART6 TX (PC6) |
+| 3 | GPS\_UART\_RX | USART6 RX (PC7) |
+| 4 | GPS\_I2C\_SCL | I2C4 SCL (PD12) |
+| 5 | GPS\_I2C\_SDA | I2C4 SDA (PD13) |
+| 6 | GND | — |
+
+I2C lines are pulled up to 3.3 V on-board. Supports UART GPS modules with an integrated compass (connect compass via I2C4). Compatible with M8N, M9N, F9P, and similar modules using a standard 6-pin GPS cable.
+
+:::note GPS port compatibility
+This is a 6-pin port, not the full 10-pin Pixhawk GPS+safety-switch port. GPS modules that include a buzzer, safety switch, or LED typically use the 10-pin format and are not directly compatible.
 :::
 
-## I2C
+---
 
-| Bus | Device | SCL | SDA | Notes |
-|---|---|---|---|---|
-| I2C1 | MMC5983MA (Mag, internal) | PB8 | PB9 | Internal only |
-| I2C2 | External plug | PB10 | PB11 | User-accessible |
-| I2C4 | GPS plug | PD12 | PD13 | Paired with USART6 for GPS+compass modules |
+## CAN 1 — U18
 
-## SPI
+**4-pin JST-GH.** FDCAN1 bus.
 
-| Bus | Device | CS | SCLK | MOSI | MISO | INT1 (DRDY) | INT2 |
-|---|---|---|---|---|---|---|---|
-| SPI1 | BMP581 (Baro) | PD11 | PA5 | PD7 | PA6 | PB15 | — |
-| SPI2 | ICM-45686 #1 (IMU) | PE4 | PD3 | PC1 | PC2\_C | PE0 | PD4 |
-| SPI3 | ICM-45686 #2 (IMU) | PA14 | PB3 | PB2 | PB4 | PC15 | PA13 |
-| SPI4 | External port | PC13, PC14 | PE2 | PE6 | PE13 | — | — |
+| Pin | Signal |
+|---|---|
+| 1 | +5V |
+| 2 | CAN1\_H |
+| 3 | CAN1\_L |
+| 4 | GND |
 
-## CAN
+:::note Onboard termination
+The 305ap includes two 120 Ω termination resistors onboard for this port. The bus is fully terminated at the FC. **Do not add any external termination resistors** — doing so will lower bus impedance below spec and cause signal integrity issues.
+:::
 
-| Port | TX | RX | Enable GPIO | Notes |
-|---|---|---|---|---|
-| FDCAN1 | PD1 | PD0 | PA10 | STB active-high |
-| FDCAN2 | PB6 | PB5 | PE1 | STB active-high |
+---
 
-## PWM Outputs
+## CAN 2 — U19
 
-| Channel | Timer | GPIO | Function |
-|---|---|---|---|
-| 1 | TIM1 CH1 | PA8 | Motor 1 |
-| 2 | TIM1 CH2 | PE11 | Motor 2 |
-| 3 | TIM2 CH1 | PA15 | Motor 3 |
-| 4 | TIM2 CH3 | PA2 | Motor 4 |
-| 5 | TIM3 CH2 | PA7 | Motor 5 |
-| 6 | TIM3 CH4 | PB1 | Motor 6 |
-| 7 | TIM4 CH2 | PB7 | Motor 7 |
-| 8 | TIM4 CH3 | PD14 | Motor 8 |
+**4-pin JST-GH.** FDCAN2 bus.
 
-## LEDs
+| Pin | Signal |
+|---|---|
+| 1 | +5V |
+| 2 | CAN2\_H |
+| 3 | CAN2\_L |
+| 4 | GND |
 
-Active-low: GPIO LOW = ON, GPIO HIGH = OFF.
+Same termination applies: two 120 Ω resistors onboard, bus fully terminated at the FC. Do not add external terminators. See [CANBUS](can-bus) for DroneCAN configuration.
 
-| Color | GPIO | PX4 Meaning |
+---
+
+## External I2C — U20
+
+**4-pin JST-GH.** General-purpose I2C expansion.
+
+| Pin | Signal | MCU |
 |---|---|---|
-| Red | PD9 | Error / boot state |
-| Green | PB12 | GPS lock / armed state |
-| Blue | PE12 | Flight mode indicator |
+| 1 | +5V | — |
+| 2 | EX\_I2C\_SCL | I2C2 SCL (PB10) |
+| 3 | EX\_I2C\_SDA | I2C2 SDA (PB11) |
+| 4 | GND | — |
 
-## Buzzer
+Signal lines pulled up to 3.3 V on-board. I2C data is 3.3 V logic. Do not connect 5 V I2C devices without level shifting.
 
-| Parameter | Value |
+---
+
+## External SPI — CN7
+
+**7-pin JST-GH.** SPI expansion with two chip selects.
+
+| Pin | Signal | MCU |
+|---|---|---|
+| 1 | +5V | — |
+| 2 | EX\_SPI\_SCK | SPI4 SCLK (PE2) |
+| 3 | EX\_SPI\_MISO | SPI4 MISO (PE13) |
+| 4 | EX\_SPI\_MOSI | SPI4 MOSI (PE6) |
+| 5 | EX\_SPI\_CS1 | SPI4 CS1 (PC13) |
+| 6 | EX\_SPI\_CS2 | SPI4 CS2 (PC14) |
+| 7 | GND | — |
+
+---
+
+## Motors — U21
+
+**12-pin connector.** 8 motor outputs, ESC telemetry, and current sense.
+
+| Pin | Signal | Notes |
+|---|---|---|
+| 1 | +5V | ESC logic / signal power |
+| 2 | CURRENT\_SENSE | Analog current input (0–3.3 V) — connect to ESC or power module current output |
+| 3 | MOTOR\_TELEM\_RX | USART1 RX (PA9) — ESC serial telemetry (BLHeli32 / AM32) |
+| 4 | MOTOR1 | TIM1 CH1 (PA8) |
+| 5 | MOTOR2 | TIM1 CH2 (PE11) |
+| 6 | MOTOR3 | TIM2 CH1 (PA15) |
+| 7 | MOTOR4 | TIM2 CH3 (PA2) |
+| 8 | MOTOR5 | TIM3 CH2 (PA7) |
+| 9 | MOTOR6 | TIM3 CH4 (PB1) |
+| 10 | MOTOR7 | TIM4 CH2 (PB7) |
+| 11 | MOTOR8 | TIM4 CH3 (PD14) |
+| 12 | GND | — |
+
+Motor outputs support PWM, OneShot, and DSHOT. ESC telemetry (pin 3) is single-wire receive-only via USART1 SINGLEWIRE+SWAP mode.
+
+---
+
+## VTX — CN6
+
+**6-pin JST-GH.** Dedicated video transmitter power and control.
+
+| Pin | Signal | Notes |
+|---|---|---|
+| 1 | +9V | Regulated from onboard AP63357 9 V buck, independent of 5 V rail |
+| 2 | VTX\_UART\_TX | USART2 TX (PD5) — VTX control (SmartAudio, Tramp, etc.) |
+| 3 | VTX\_UART\_RX | USART2 RX (PD6) |
+| 4 | GND | — |
+| 5 | VTX\_SBUS | USART3 TX (PD8) — SBUS or serial output to OSD |
+| 6 | GND | — |
+
+The 9 V rail is available whenever the board is powered from battery. It is not available from USB power alone.
+
+---
+
+## RC IN — U22
+
+**3-pin.** RC receiver input.
+
+| Pin | Signal | Notes |
+|---|---|---|
+| 1 | +5V | Receiver power |
+| 2 | RC\_IN | UART5 (PB13) — SBUS, CRSF, PPM, or other single-wire protocol |
+| 3 | GND | — |
+
+Single-wire input via UART5 SINGLEWIRE+SWAP. CRSF and uninverted ELRS are fully supported. For SBUS, PX4 uses hardware UART inversion on the STM32H7. For CRSF/ELRS receivers that need a full-duplex UART, connect to TELEM 1 or TELEM 2 and reassign the port function in QGroundControl.
+
+---
+
+## USB-C — USBC1
+
+Standard USB-C receptacle. USB 2.0 Full Speed device.
+
+| Signal | Notes |
 |---|---|
-| GPIO | PA3 |
-| Timer | TIM5, Channel 4 |
+| D+ / D− | USB 2.0 FS data (PA12 / PA11) |
+| VBUS | Feeds 5 V power mux (TPS2116) — board can run from USB alone |
+| CC1 / CC2 | 5.1 kΩ to GND — identifies board as a standard 5 V USB sink |
+| GND / Shield | — |
 
-## SD Card (SDMMC1)
-
-| Signal | Pin |
-|---|---|
-| CMD | PD2 |
-| CLK | PC12 |
-| DAT0 | PC8 |
-| DAT1 | PC9 |
-| DAT2 | PC10 |
-| DAT3 | PC11 |
-| Card Detect | PE3 |
-
-## USB
-
-| Signal | Pin |
-|---|---|
-| D+ | PA12 |
-| D− | PA11 |
-
-Bus-powered. No VBUS detection line. The board cannot detect whether USB power is present.
-
-## ADC / Power Sensing
-
-| Signal | GPIO | ADC Channel | Notes |
-|---|---|---|---|
-| VSENSE (voltage) | PC4 | ADC1 INP4 | 1:11 resistor divider |
-| ASENSE (current) | PC3\_C | ADC3 INP1 | External current sensor required |
-
-## Unconnected (NC) Pins
-
-The following pins are unconnected on this board and safe to ignore:
-`PA4`, `PC0`, `PC5`, `PD10`, `PD15`, `PE5`, `PE14`, `PE15`
+ESD protection via USBLC6-4SC6. No USB Power Delivery. 5 V only. No VBUS detection line in firmware.

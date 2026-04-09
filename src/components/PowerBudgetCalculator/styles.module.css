@@ -1,0 +1,276 @@
+.calc {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: #faf9f7;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+/* Columns */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+@media (max-width: 800px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+.col {}
+
+.colHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+.colHeadRight {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Port row */
+.portRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.portLabel {
+  width: 108px;
+  flex-shrink: 0;
+  font-weight: 500;
+  color: #374151;
+}
+
+.slider {
+  flex: 1;
+  accent-color: #8a6c3e;
+  cursor: pointer;
+  min-width: 0;
+}
+.slider_warn { accent-color: #d97706; }
+.slider_over { accent-color: #dc2626; }
+
+.numInput {
+  width: 58px;
+  flex-shrink: 0;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  text-align: right;
+  background: #fff;
+  color: #111827;
+  -moz-appearance: textfield;
+}
+.numInput::-webkit-inner-spin-button,
+.numInput::-webkit-outer-spin-button { opacity: 0; }
+.numInput:focus { outline: 2px solid #8a6c3e; outline-offset: -1px; border-color: transparent; }
+.num_warn { border-color: #d97706; color: #b45309; }
+.num_over { border-color: #dc2626; color: #b91c1c; font-weight: 700; }
+
+.portMa {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.portWatts {
+  width: 56px;
+  flex-shrink: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+  color: #d1d5db;
+}
+.portWattsActive {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Summary */
+.summary {
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.sumRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem;
+  color: #6b7280;
+  border-bottom: 1px solid #f3f4f6;
+  font-variant-numeric: tabular-nums;
+}
+.sumRow:last-child { border-bottom: none; }
+.sumTotal {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Cell grid */
+.cellGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+
+.cellCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.12s;
+  gap: 0.15rem;
+}
+.cellCard:hover {
+  border-color: #8a6c3e;
+}
+.cellCardActive {
+  border-color: #8a6c3e;
+  background: #8a6c3e;
+}
+
+.cellLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #374151;
+  .cellCardActive & { color: #fff; }
+}
+.cellCardActive .cellLabel { color: #fff; }
+
+.cellVoltage {
+  font-size: 0.68rem;
+  color: #9ca3af;
+  font-variant-numeric: tabular-nums;
+}
+.cellCardActive .cellVoltage { color: rgba(255,255,255,0.7); }
+
+.cellCurrent {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+}
+.cellCardActive .cellCurrent { color: #fff; }
+
+/* Meters */
+.meters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+@media (max-width: 800px) {
+  .meters { grid-template-columns: 1fr; }
+}
+
+.meterTitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.meter {}
+
+.meterTrack {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: #e5e7eb;
+  overflow: visible;
+}
+
+/* Zone shading on the track */
+.meterTrack::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    transparent 60%,
+    rgba(245,158,11,0.12) 60%,
+    rgba(245,158,11,0.12) 80%,
+    rgba(239,68,68,0.12) 80%
+  );
+  pointer-events: none;
+}
+
+.meterFill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.12s ease;
+}
+.fill_ok   { background: #22c55e; }
+.fill_warn { background: #f59e0b; }
+.fill_over { background: #ef4444; }
+
+.tick {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 16px;
+  background: #9ca3af;
+  transform: translateX(-1px);
+  border-radius: 1px;
+}
+.tickMax { background: #f87171; }
+
+.meterLabels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.35rem;
+}
+.meterVal {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.meterLimits {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+/* Status badges */
+.statusBadge {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.statusOk   { background: #dcfce7; color: #15803d; }
+.statusWarn { background: #fef3c7; color: #b45309; }
+.statusOver { background: #fee2e2; color: #b91c1c; }

@@ -1,9 +1,9 @@
 ---
 id: gps-setup
-title: Gps Setup
-sidebar_label: Gps Setup
+title: GPS Setup
+sidebar_label: GPS Setup
 ---
 
-# Gps Setup
+# GPS Setup
 
 Content coming soon.

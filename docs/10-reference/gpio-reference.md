@@ -1,9 +1,9 @@
 ---
 id: gpio-reference
-title: Gpio Reference
-sidebar_label: Gpio Reference
+title: GPIO Reference
+sidebar_label: GPIO Reference
 ---
 
-# Gpio Reference
+# GPIO Reference
 
 Content coming soon.
