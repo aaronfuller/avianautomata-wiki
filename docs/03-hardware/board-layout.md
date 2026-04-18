@@ -32,7 +32,7 @@ The 305ap connector layout is designed for clean wire routing in a typical FPV s
 ## Top Side
 
 - STM32H743VIH6 MCU (TFBGA100)
-- 2× ICM-45686 IMUs (SPI, adjacent, same orientation)
+- 2× IMU slots (SPI2, SPI3) — ST LSM6DSV or TDK InvenSense ICM-45686, auto-detected at boot
 - BMP581 barometer (SPI)
 - MMC5983MA magnetometer (I2C, internal)
 - SIT1044T CAN transceivers
@@ -62,7 +62,7 @@ Connectors are densely packed near the board edges, leaving little room to acces
 - **Rubber anti-vibration standoffs** — the raised profile lifts a bolt head above the board surface and clear of the surrounding connectors, providing enough room to tighten
 
 :::tip Vibration isolation
-Soft-mount the FC using rubber standoffs (M3 anti-vibration grommets) for best IMU performance. The ICM-45686 IMUs have good vibration immunity, but excessive airframe resonance will still degrade EKF2 estimation.
+Soft-mount the FC using rubber standoffs (M3 anti-vibration grommets) for best IMU performance. Both supported IMU parts have good vibration immunity, but excessive airframe resonance will still degrade EKF2 estimation.
 :::
 
 ## Buttons

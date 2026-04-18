@@ -38,8 +38,8 @@ USART1 and UART5 use single-wire half-duplex mode. The physical TX pin is reconf
 | Bus | Device | CS | SCLK | MOSI | MISO | INT1 (DRDY) | INT2 |
 |---|---|---|---|---|---|---|---|
 | SPI1 | BMP581 (Baro) | PD11 | PA5 | PD7 | PA6 | PB15 | — |
-| SPI2 | ICM-45686 #1 (IMU) | PE4 | PD3 | PC1 | PC2\_C | PE0 | PD4 |
-| SPI3 | ICM-45686 #2 (IMU) | PA14 | PB3 | PB2 | PB4 | PC15 | PA13 |
+| SPI2 | LSM6DSV / ICM-45686 #1 (IMU) | PE4 | PD3 | PC1 | PC2\_C | PE0 | PD4 |
+| SPI3 | LSM6DSV / ICM-45686 #2 (IMU) | PA14 | PB3 | PB2 | PB4 | PC15 | PA13 |
 | SPI4 | External SPI connector | PC13, PC14 | PE2 | PE6 | PE13 | — | — |
 
 ## CAN
@@ -105,7 +105,7 @@ No VBUS detection line. Board cannot detect whether USB power is present.
 | Signal | GPIO | ADC Channel | Notes |
 |---|---|---|---|
 | VSENSE (battery voltage) | PC4 | ADC1 INP4 | 1:11 resistor divider |
-| ASENSE (current) | PC3\_C | ADC3 INP1 | External current sensor required |
+| ASENSE (current) | PC3\_C | ADC3 INP1 | External current sensor required. Read via ADC1 CH13 (PC3) using the STM32H7 SYSCFG\_PMCR analog switch (PC3SO default = closed). |
 
 ## Unconnected (NC) Pins
 

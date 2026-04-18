@@ -22,11 +22,11 @@ If QGroundControl does not detect the board, try entering DFU mode manually (see
 
 ### Enter DFU Mode
 
-The 305ap has no dedicated DFU button. To enter DFU mode:
+The 305ap has a dedicated **BOOT** button on the board. To enter DFU mode:
 
-1. Locate the **BOOT0** pin/pad on the board.
-2. Hold BOOT0 high (connect to 3.3V) while applying power or pressing NRST.
-3. The board will enumerate as an STM32 DFU device.
+1. Hold the **BOOT** button.
+2. Apply power (or press and release **RESET** while already powered).
+3. Release the BOOT button. The board will enumerate as an STM32 DFU device.
 
 ### Flash with dfu-util
 

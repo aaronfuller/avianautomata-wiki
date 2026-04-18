@@ -38,7 +38,7 @@ Calibrate all sensors before flying. Follow the on-screen instructions:
 | Level Horizon | Place the board level, then calibrate |
 
 :::note IMU orientation
-Both ICM-45686 IMUs are mounted flat on the top of the board with standard orientation. No rotation offset is needed if the board is mounted flat and forward-facing.
+Both IMU slots are mounted flat on the top of the board with the same orientation, regardless of which part is populated (LSM6DSV or ICM-45686). No rotation offset is needed if the board is mounted flat and forward-facing.
 :::
 
 ### 3. Radio
