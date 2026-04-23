@@ -55,7 +55,7 @@
 
 .slider {
   flex: 1;
-  accent-color: #8a6c3e;
+  accent-color: #7a5e00;
   cursor: pointer;
   min-width: 0;
 }
@@ -78,7 +78,7 @@
 }
 .numInput::-webkit-inner-spin-button,
 .numInput::-webkit-outer-spin-button { opacity: 0; }
-.numInput:focus { outline: 2px solid #8a6c3e; outline-offset: -1px; border-color: transparent; }
+.numInput:focus { outline: 2px solid #7a5e00; outline-offset: -1px; border-color: transparent; }
 .num_warn { border-color: #d97706; color: #b45309; }
 .num_over { border-color: #dc2626; color: #b91c1c; font-weight: 700; }
 
@@ -142,11 +142,11 @@
   gap: 0.15rem;
 }
 .cellCard:hover {
-  border-color: #8a6c3e;
+  border-color: #d4af37;
 }
 .cellCardActive {
-  border-color: #8a6c3e;
-  background: #8a6c3e;
+  border-color: #b08e28;
+  background: #b08e28;
 }
 
 .cellLabel {
