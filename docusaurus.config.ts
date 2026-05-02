@@ -11,7 +11,7 @@ const config: Config = {
   tagline: 'Documentation for avian automata products',
   favicon: 'img/favicon.png',
 
-  url: 'https://wiki.avianautomata.com',
+  url: 'https://docs.avianautomata.com',
   baseUrl: '/',
 
   organizationName: 'avianautomata',
