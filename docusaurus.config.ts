@@ -83,7 +83,7 @@ const config: Config = {
 
   themeConfig: {
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: 'dark',
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
@@ -120,7 +120,7 @@ const config: Config = {
     },
 
     footer: {
-      style: 'light',
+      style: 'dark',
       links: [
         {
           title: 'Products',
