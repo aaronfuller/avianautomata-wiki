@@ -7,7 +7,7 @@ const config: Config = {
     mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
-  title: 'avian automata Wiki',
+  title: 'avian automata docs',
   tagline: 'Documentation for avian automata products',
   favicon: 'img/favicon.png',
 
@@ -89,7 +89,7 @@ const config: Config = {
     },
 
     navbar: {
-      title: 'avian automata',
+      title: 'avian automata docs',
       logo: {
         alt: 'avian automata Logo',
         src: 'img/logo.png',
