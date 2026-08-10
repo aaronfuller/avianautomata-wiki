@@ -104,11 +104,6 @@ const config: Config = {
             { label: '305ap Flight Controller', to: '/305ap/intro' },
           ],
         },
-        {
-          href: 'https://github.com/avianautomata',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
 
@@ -134,12 +129,6 @@ const config: Config = {
             { label: 'PX4 Documentation', href: 'https://docs.px4.io' },
             { label: 'QGroundControl', href: 'https://qgroundcontrol.com' },
             { label: 'PX4 Discuss', href: 'https://discuss.px4.io' },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            { label: 'GitHub', href: 'https://github.com/avianautomata' },
           ],
         },
       ],
