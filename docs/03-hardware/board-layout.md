@@ -8,7 +8,7 @@ sidebar_label: Board Layout
 
 ## Form Factor
 
-The 305ap uses a **30.5 mm × 30.5 mm** mounting pattern, matching standard 30.5 mm stack flight controllers. It is compatible with most 5" and larger freestyle/racing frames as well as custom mounts.
+The 305ap is a **36.5 mm × 36.5 mm** board with an **M4 mounting hole pattern** designed around soft-mount vibration isolation. Each mounting hole accepts a standard M3 rubber vibration isolator (M4 outer diameter, M3 inner bore) so the FC floats on rubber rather than bolting rigidly to the frame. Weight is **11 g with microSD card installed**.
 
 ## Connector Placement
 
@@ -50,19 +50,20 @@ The 305ap connector layout is designed for clean wire routing in a typical FPV s
 
 ## Mounting
 
-The 305ap uses the standard 30.5 mm × 30.5 mm M3 hole pattern. Mounting holes have a **3 mm clearance diameter** and accept fasteners with heads up to **6 mm across**. The mounting holes are **electrically connected to GND** — use nylon standoffs or insulating washers if GND continuity to the frame is not desired.
+The 305ap uses a **36.5 mm × 36.5 mm** mounting pattern with **M4 mounting holes** sized for standard M3 rubber vibration isolators. Each hole accepts one isolator (M4 OD × M3 ID) that the mounting M3 fastener passes through — the FC ends up floating on rubber with no direct metal-to-metal contact between the board and the airframe.
+
+The mounting holes are **electrically connected to GND** — this is only relevant if the M3 screw contacts the frame directly. When using rubber isolators as intended, the rubber breaks the electrical path.
 
 The board is a single-MCU architecture with no FMU/I/O split. All outputs and peripherals are driven directly by the STM32H743.
 
-### Fastener selection
+### Fastener recommendations
 
-Connectors are densely packed near the board edges, leaving little room to access or torque fasteners from above. Hex-socket bolt heads (like M3 cap screws) are awkward to reach with an Allen key in this layout. Preferred options:
-
-- **Screw-style fastener heads** (slotted or Phillips M3 screws) — a screwdriver accesses the head from above without needing the lateral clearance that an Allen key requires
-- **Rubber anti-vibration standoffs** — the raised profile lifts a bolt head above the board surface and clear of the surrounding connectors, providing enough room to tighten
+- Use **M3 screws** through the isolators into standoffs on the frame side.
+- Tighten M3 fasteners until snug, then back off a quarter turn — over-torquing crushes the isolator and defeats vibration isolation. The FC should have a small amount of visible give under finger pressure.
+- Rubber anti-vibration isolators (M3 hardware inside an M4 outer body) are available from Avian Automata as a 12-pack replacement; four are included with each 305ap for a full first-install.
 
 :::tip Vibration isolation
-Soft-mount the FC using rubber standoffs (M3 anti-vibration grommets) for best IMU performance. Both supported IMU parts have good vibration immunity, but excessive airframe resonance will still degrade EKF2 estimation.
+The M4 mounting hole pattern exists specifically to accept M3 rubber vibration isolators. Do not bolt the 305ap directly to the frame with M4 screws through the mounting holes — you lose the vibration isolation the mount was designed for. Every current-generation IMU is only as good as its mount, and hard-mounting transmits motor and airframe vibration straight into the gyro and accelerometer.
 :::
 
 ## Buttons

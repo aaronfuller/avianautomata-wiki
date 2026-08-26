@@ -8,7 +8,7 @@ slug: /intro
 
 # avian automata 305ap
 
-The 305ap is a compact, high-performance flight controller for multirotor, fixed-wing, and rover platforms. It runs [PX4](https://px4.io) on NuttX RTOS, built around the STM32H743VIH6. The board follows a 30.5 mm mounting pattern and is aimed at the PX4 ecosystem with dual FDCAN, dual telemetry, a dedicated VTX power rail, and a full onboard sensor suite with redundant IMUs.
+The 305ap is a compact, high-performance flight controller for multirotor, fixed-wing, and rover platforms. It runs [PX4](https://px4.io) on NuttX RTOS, built around the STM32H743VIH6. The board is 36.5 mm × 36.5 mm with an M4 mounting hole pattern designed around M3 rubber vibration isolators, aimed at the PX4 ecosystem with dual FDCAN, dual telemetry, a dedicated VTX power rail, and a full onboard sensor suite with redundant IMUs.
 
 ## Quick Links
 
@@ -68,7 +68,9 @@ The 305ap is a compact, high-performance flight controller for multirotor, fixed
 
 | Parameter | Value |
 |---|---|
-| Form factor | 30.5 mm mounting pattern |
+| Dimensions | 36.5 mm × 36.5 mm |
+| Mounting | M4 mounting holes, sized for M3 rubber vibration isolators |
+| Weight | 11 g (with microSD card installed) |
 | Firmware target | `avianautomata_305ap` |
 
 ## Design Notes
