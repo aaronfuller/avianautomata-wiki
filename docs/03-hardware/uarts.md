@@ -13,7 +13,7 @@ The 305ap exposes 7 hardware UARTs. Each maps to a NuttX `ttyS` device and a PX4
 | UART | `ttyS` | PX4 Port | Default Function | Baud |
 |---|---|---|---|---|
 | USART1 | ttyS0 | — | Motor Telemetry RX | 57600 |
-| USART2 | ttyS1 | TEL3 | VTX | 57600 |
+| USART2 | ttyS1 | TEL3 | VTX / MSP OSD | 115200 |
 | USART3 | ttyS2 | — | VTX SBUS output | — |
 | UART4 | ttyS3 | TEL1 | Telemetry 1 / MAVLink | 57600 |
 | UART5 | ttyS4 | RC | RC Input | — |
@@ -33,9 +33,11 @@ The physical TX pin (PA9) is reconfigured as the RX line. This is a receive-only
 
 ### USART2 — VTX / TEL3 (ttyS1)
 
-Standard full-duplex UART. Assigned as TEL3 by default.
+Standard full-duplex UART. Assigned as TEL3 by default and pre-configured for the MSP OSD driver at 115200 baud, which paints an OSD overlay onto goggles that support MSP DisplayPort (HDZero, Walksnail, most analog VTX-with-MSP setups).
 
 - TX: PD5, RX: PD6
+- Defaults set in firmware: `MSP_OSD_CONFIG=103` (TEL3), `SER_TEL3_BAUD=115200`
+- To disable the OSD driver at runtime, set `MSP_OSD_CONFIG=0` in QGroundControl and reboot
 
 ### USART3 — VTX SBUS / Debug Console (ttyS2)
 

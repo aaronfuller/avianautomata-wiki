@@ -195,13 +195,17 @@ Motor outputs support PWM, OneShot, and DSHOT. ESC telemetry (pin 3) is single-w
 | Pin | Signal | Notes |
 |---|---|---|
 | 1 | +9V | Regulated from onboard AP63357 9 V buck, independent of 5 V rail |
-| 2 | VTX\_UART\_TX | USART2 TX (PD5) — VTX control (SmartAudio, Tramp, etc.) |
+| 2 | VTX\_UART\_TX | USART2 TX (PD5) — MSP DisplayPort OSD to VTX/goggles (default) |
 | 3 | VTX\_UART\_RX | USART2 RX (PD6) |
 | 4 | GND | — |
-| 5 | VTX\_SBUS | USART3 TX (PD8) — SBUS or serial output to OSD |
+| 5 | VTX\_SBUS | USART3 TX (PD8) — SBUS out (TX only; PD9 is the red LED) |
 | 6 | GND | — |
 
 The 9 V rail is available whenever the board is powered from battery. It is not available from USB power alone.
+
+:::note MSP OSD ships enabled
+Stock firmware runs `msp_osd` on USART2 at 115200 baud (`MSP_OSD_CONFIG=103`, TELEM 3). Compatible goggles receive an OSD overlay as soon as the FC boots — no additional configuration needed. Note that the on-screen battery reading is **average per-cell voltage**, not pack voltage (3.7-3.8 V/cell is normal at rest).
+:::
 
 ---
 
